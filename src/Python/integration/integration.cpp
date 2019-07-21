@@ -124,11 +124,13 @@ In SIGGRAPH, 1996)");
             uniform_tsdfvolume);
     uniform_tsdfvolume
             .def(py::init([](double length, int resolution, double sdf_trunc,
+                             double x, double y, double z,
                              integration::TSDFVolumeColorType color_type) {
                      return new integration::UniformTSDFVolume(
-                             length, resolution, sdf_trunc, color_type);
+                             length, resolution, sdf_trunc, color_type, Eigen::Vector3d(x,y,z));
                  }),
-                 "length"_a, "resolution"_a, "sdf_trunc"_a, "color_type"_a)
+                 "length"_a, "resolution"_a, "sdf_trunc"_a, 
+                 "x"_a, "y"_a, "z"_a, "color_type"_a)
             .def("__repr__",
                  [](const integration::UniformTSDFVolume &vol) {
                      return std::string("integration::UniformTSDFVolume ") +
